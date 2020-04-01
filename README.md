@@ -14,3 +14,8 @@ This project AIMs to be blog template backed by firebase.
 [x] - Add Categories
 [x] - Add Priority
 [x] - Add publish/unpublished option
+
+
+#### Contributor
+
+[Shubham Singh Chahar](https://github.com/thefallenmerc)
