@@ -3,6 +3,10 @@ body {
     margin: 0;
     font-family: "Overpass Mono", monospace;
     // components
+    [class$="Page"] {
+        margin: 52px 0;
+        position: relative;
+    }
     .Remarkable {
         margin: auto;
         text-align: center;
@@ -22,24 +26,47 @@ body {
             margin-bottom: 0.5rem;
         }
         p {
-            
             margin-top: 1rem;
             margin-bottom: 1rem;
         }
     }
-    .Sidebar {
-        padding: 0.5rem;
+    .Navbar {
         position: fixed;
         left: 0;
         top: 0;
+        right: 0;
+        z-index: 69;
+        background-color: white;
+        box-shadow: 0 0 10px 0 #0003;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .sidebar-toggle {
+            width: 40px;
+            height: 40px;
+            margin: 0 5px;
+        }
+    }
+    .Footer {
+        position: fixed;
+        left: 0;
         bottom: 0;
+        right: 0;
+        z-index: 69;
+        background-color: white;
+        box-shadow: 0 0 10px 0 #0003;
+    }
+    .Sidebar {
+        padding: 0.5rem;
         background: white;
         width: 300px;
+        flex-shrink: 0;
+        z-index: 68;
     }
     .ToastNotifier {
         position: fixed;
         right: 1rem;
-        bottom: 1rem;
+        bottom: 4.75rem;
         .toast {
             .toast-body {
                 display: flex;
@@ -57,11 +84,30 @@ body {
             }
         }
     }
-    .HomePage {
+    .spinner {
+        animation: spinner 0.75s ease-in-out infinite;
+    }
+
+    @keyframes spinner {
+        0% {
+            transform: rotate(0);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .LoginPage {
+        .main-content {
+            height: calc(100vh - 108px);
+        }
+    }
+
+    .HomePage,
+    .PostPage {
         display: flex;
         .main-content {
-            margin-left: 300px;
-            width: calc(100% - 300px);
+            flex-grow: 1;
             .container {
                 margin-left: auto;
                 margin-right: auto;
@@ -72,15 +118,15 @@ body {
     .DashboardPage {
         display: flex;
         .main-content {
-            height: 100vh;
+            border-right: 1px solid lightgray;
+            height: calc(100vh - 108px);
             position: relative;
-            margin-left: 300px;
             flex-grow: 1;
             flex-shrink: 0;
             width: calc(50% - 150px);
             textarea {
                 resize: none;
-                height: calc(100vh - 64px);
+                height: calc(100vh - 172px);
                 font-family: monospace;
                 font-size: 1.2rem;
             }
@@ -91,11 +137,28 @@ body {
             }
         }
         .remarkable {
-            height: 100vh;
+            height: calc(100vh - 108px);
             overflow: auto;
             flex-grow: 1;
             flex-shrink: 0;
             width: calc(50% - 150px);
+        }
+    }
+
+    @media only screen and (max-width: 720px) {
+        .Sidebar {
+            display: none;
+            width: 100%;
+            position: fixed;
+            left: 0;
+            bottom: 52px;
+            top: 52px;
+            right: 0;
+        }
+        .App.with-sidebar {
+            .Sidebar {
+                display: block;
+            }
         }
     }
 }

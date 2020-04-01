@@ -8,7 +8,7 @@ import { history } from '../_config';
 export const DASHBOARD_ROUTE = '/dashboard';
 export const DASHBOARD_EDIT_ROUTE = '/dashboard/edit/:url';
 
-function DashboardPageComponent({ firebase, user, match, addToast }) {
+function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar }) {
 
     // initialize all the variable
     const [title, setTitle] = useState('');
@@ -54,8 +54,11 @@ function DashboardPageComponent({ firebase, user, match, addToast }) {
     const addBlog = event => {
         event.preventDefault();
 
-        if (!title.trim() || !content.trim()) {
-            addToast('Title or content cannot be empty!');
+        if (!title.trim()) {
+            return addToast('Title cannot be empty!');
+        }
+        if (!content.trim()) {
+            return addToast('Content cannot be empty!');
         }
 
         (
@@ -89,7 +92,7 @@ function DashboardPageComponent({ firebase, user, match, addToast }) {
 
     return (
         <div className="DashboardPage">
-            <Sidebar blogs={blogs} to={url => '/dashboard/edit/' + url} activeUrl={match.params.url} />
+            <Sidebar blogs={blogs} to={url => '/dashboard/edit/' + url} activeUrl={match.params.url} toggleSidebar={toggleSidebar} />
             <form onSubmit={addBlog} className="main-content">
                 <input
                     name="title" type="text" placeholder="Title"

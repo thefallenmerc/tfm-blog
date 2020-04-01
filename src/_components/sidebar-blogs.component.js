@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export
-    function Sidebar({ blogs, to = url => url, activeUrl }) {
+    function Sidebar({ blogs, to = url => url, activeUrl, toggleSidebar = () => {} }) {
     const [filter, setFilter] = useState('');
     return (
         <div className="Sidebar border border-t-0 border-l-0 border-b-0">
@@ -25,6 +25,7 @@ export
                                 "block px-4 py-2 text-orange-500 cursor-pointer" :
                                 "block px-4 py-2 hover:text-orange-500 cursor-pointer"
                         }
+                        onClick={toggleSidebar}
                         key={index}>
                         {blog.title ?? 'Untitled Blog'}
                     </Link>

@@ -2,6 +2,7 @@ import React from 'react';
 import { withSession } from '../_contexts';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { LOGIN_ROUTE } from '../_pages';
+import { Loader } from './loader.component';
 
 function ProtectedRouteComponent(props) {
     // check if actually auth check is complete and then only send user to redirection
@@ -16,7 +17,9 @@ function ProtectedRouteComponent(props) {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center'
-        }}>Please wait...</div></Route>
+        }}>
+            <Loader />
+        </div></Route>
     }
     return (
         props.user ?
