@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400;600;700&display=swap");
+body {
+    margin: 0;
+    font-family: "Overpass Mono", monospace;
+    // components
+    .Remarkable {
+        margin: auto;
+        text-align: center;
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+        ol {
+            margin-left: 2rem;
+            list-style: disc;
+            & > li {
+                padding: 0.25rem;
+            }
+        }
+        img {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        p {
+            
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+    }
+    .Sidebar {
+        padding: 0.5rem;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background: white;
+        width: 300px;
+    }
+    .ToastNotifier {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        .toast {
+            .toast-body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .toast-delete {
+                display: block;
+                width: 20px;
+                color: #fffa;
+                cursor: pointer;
+                font-size: 1.5rem;
+                text-align: center;
+                margin-left: 1rem;
+            }
+        }
+    }
+    .HomePage {
+        display: flex;
+        .main-content {
+            margin-left: 300px;
+            width: calc(100% - 300px);
+            .container {
+                margin-left: auto;
+                margin-right: auto;
+                // min-height: calc(100vh - 130px);
+            }
+        }
+    }
+    .DashboardPage {
+        display: flex;
+        .main-content {
+            height: 100vh;
+            position: relative;
+            margin-left: 300px;
+            flex-grow: 1;
+            flex-shrink: 0;
+            width: calc(50% - 150px);
+            textarea {
+                resize: none;
+                height: calc(100vh - 64px);
+                font-family: monospace;
+                font-size: 1.2rem;
+            }
+            button[type="submit"] {
+                position: absolute;
+                right: 1rem;
+                top: 0.5rem;
+            }
+        }
+        .remarkable {
+            height: 100vh;
+            overflow: auto;
+            flex-grow: 1;
+            flex-shrink: 0;
+            width: calc(50% - 150px);
+        }
+    }
+}
