@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { HOMEPAGE_ROUTE } from '../_pages';
+import { HOMEPAGE_ROUTE, DASHBOARD_ROUTE } from '../_pages';
 import { withFirebase } from '../_contexts';
 
 export function NavbarComponent({ toggleSidebar, firebase }) {
