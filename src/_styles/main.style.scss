@@ -1,7 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import "./theme.style.scss";
+
 body {
     margin: 0;
-    font-family: "Overpass Mono", monospace;
+    font-family: "Raleway", "Roboto", "Overpass Mono", monospace;
     // components
     [class$="Page"] {
         margin: 52px 0;
@@ -9,25 +14,46 @@ body {
     }
     .Remarkable {
         margin: auto;
-        text-align: center;
+        text-align: justify;
+        max-width: 900px;
+        line-height: 2rem;
         h1 {
+            margin: 1rem 0;
+            text-transform: uppercase;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+        h2 {
+            margin: 1rem 0;
+            text-transform: uppercase;
             font-size: 1.5rem;
-            font-weight: 500;
+            font-weight: 700;
+        }
+        h3 {
+            margin: 1rem 0;
+            text-transform: uppercase;
+            font-size: 1.25rem;
+            font-weight: 700;
         }
         ol {
             margin-left: 2rem;
-            list-style: disc;
+            list-style: decimal-leading-zero;
             & > li {
                 padding: 0.25rem;
             }
         }
         img {
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
+            margin: 0.5rem auto;
         }
         p {
             margin-top: 1rem;
             margin-bottom: 1rem;
+        }
+        a {
+            color: $theme-color;
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
     .Navbar {
@@ -103,7 +129,55 @@ body {
         }
     }
 
-    .HomePage,
+    .HomePage {
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+            .blog-card-holder {
+                display: flex;
+                justify-content: center;
+                .blog-card {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    width: 480px;
+                    box-shadow: 0 0 0.5rem 0 #0003;
+                    border-radius: 0.25rem;
+                    margin: 1rem;
+                    position: relative;
+                    overflow: hidden;
+                    .blurred-bg {
+                        position: absolute;
+                        top: -10px;
+                        left: -10px;
+                        right: -10px;
+                        bottom: -10px;
+                        background-size: cover;
+                        filter: blur(5px);
+                    }
+                    .blog-image {
+                        z-index: 1;
+                        & > img {
+                            border-top-left-radius: 0.25rem;
+                            border-top-right-radius: 0.25rem;
+                            display: block;
+                        }
+                    }
+                    .blog-title {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        z-index: 1;
+                        border-radius: 0.25rem;
+                        padding: 1rem;
+                        color: white;
+                        background-color: #0005;
+                    }
+                }
+            }
+        }
+    }
     .PostPage {
         display: flex;
         .main-content {

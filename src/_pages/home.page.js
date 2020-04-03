@@ -1,16 +1,47 @@
 import React from 'react';
 import { Sidebar } from '../_components';
+import { Link } from 'react-router-dom';
 
 export const HOMEPAGE_ROUTE = '/';
+
+const randomUnsplash = () => {
+    const splashes = [
+        "https://images.unsplash.com/photo-1431512284068-4c4002298068?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80",
+        "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80",
+        "https://images.unsplash.com/photo-1562839492-20a189fafbcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+        "https://images.unsplash.com/photo-1431794062232-2a99a5431c6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+        "https://images.unsplash.com/photo-1422564030440-1ecae6e21f67?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1401&q=80",
+        "https://images.unsplash.com/photo-1543096757-a42d5d384910?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1268&q=80"
+    ]
+
+    return splashes[Math.floor(Math.random() * splashes.length)];
+}
 
 export function HomePage({ blogs, toggleSidebar }) {
     return (
         <div className="HomePage">
-            <Sidebar blogs={blogs} toggleSidebar={toggleSidebar} />
             <div className="main-content">
-                <div className="container">
-                    <div className="py-2 px-4">
-                        <img alt="" src="https://images.unsplash.com/photo-1480506132288-68f7705954bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1393&q=80" />
+                <div className="container pt-5">
+                    {/* <h1 className="my-4 text-2xl text-center font-bold">{process.env.REACT_APP_NAME}</h1> */}
+                    <div className="blog-card-holder">
+                        {
+                            blogs.map((blog, i) => {
+                                const image = blog.image || randomUnsplash();
+                                return (
+                                    <Link className="blog-card" key={i} to={blog.url}>
+                                        <div className="blurred-bg" style={{ backgroundImage: 'url(' + image + ')' }}></div>
+                                        <div className="blog-image">
+                                            <img
+                                                src={image}
+                                                alt={blog.title} />
+                                        </div>
+                                        <div className="blog-title">
+                                            {blog.title}
+                                        </div>
+                                    </Link>
+                                )
+                            })
+                        }
                     </div>
                 </div>
             </div>
