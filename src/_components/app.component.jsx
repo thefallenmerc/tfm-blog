@@ -6,6 +6,7 @@ import { withFirebase, withSessionProvider, withSession, ToastContext, ToastNoti
 import { ProtectedRoute } from './protected-route.component';
 import { Navbar } from './navbar.component';
 import { Footer } from './footer.component';
+import { Loader } from './loader.component';
 
 console.log(process.env.REACT_APP_LOL);
 
@@ -14,6 +15,7 @@ function AppComponent({ firebase, user }) {
     const [blogs, setBlogs] = useState([]);
     const [toasts, setToasts] = useState([]);
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+    const [blogsLoaded, setBlogsLoaded] = useState(false);
     let listeners = [];
 
     useEffect(() => {
@@ -26,6 +28,7 @@ function AppComponent({ firebase, user }) {
                     b.push(e.data());
                 })
                 setBlogs(b);
+                setBlogsLoaded(true);
             });
 
         // listen for user state change
@@ -63,36 +66,40 @@ function AppComponent({ firebase, user }) {
 
     return (
         <div className={"App" + (isSidebarVisible ? " with-sidebar" : "")}>
-            <ToastContext.Provider value={{
-                toasts,
-                addToast,
-                removeToast
-            }}>
-                <Router history={history}>
-                    <Navbar toggleSidebar={toggleSidebar} />
-                    <Switch>
-                        <Route
-                            path={LOGIN_ROUTE} exact
-                            component={LoginPage} />
-                        <Route
-                            path={HOMEPAGE_ROUTE} exact
-                            render={props => <HomePage blogs={blogs} {...props}  toggleSidebar={toggleSidebar} />} />
-                        <ProtectedRoute
-                            path={DASHBOARD_ROUTE} exact
-                            isAuthChecked={isAuthChecked}
-                            render={props => <DashboardPage {...props} blogs={blogs} isAuthChecked={isAuthChecked}  toggleSidebar={toggleSidebar} />} />
-                        <ProtectedRoute
-                            path={DASHBOARD_EDIT_ROUTE} exact
-                            isAuthChecked={isAuthChecked}
-                            render={props => <DashboardPage {...props} blogs={blogs} isAuthChecked={isAuthChecked}  toggleSidebar={toggleSidebar} />} />
-                        <Route
-                            path={POSTPAGE_ROUTE}
-                            render={props => <PostPage blogs={blogs} {...props}  toggleSidebar={toggleSidebar} />} />
-                    </Switch>
-                    <Footer />
-                </Router>
-                <ToastNotifier />
-            </ToastContext.Provider>
+            {
+                blogsLoaded ?
+                    <ToastContext.Provider value={{
+                        toasts,
+                        addToast,
+                        removeToast
+                    }}>
+                        <Router history={history}>
+                            <Navbar toggleSidebar={toggleSidebar} />
+                            <Switch>
+                                <Route
+                                    path={LOGIN_ROUTE} exact
+                                    component={LoginPage} />
+                                <Route
+                                    path={HOMEPAGE_ROUTE} exact
+                                    render={props => <HomePage blogs={blogs} {...props} toggleSidebar={toggleSidebar} />} />
+                                <ProtectedRoute
+                                    path={DASHBOARD_ROUTE} exact
+                                    isAuthChecked={isAuthChecked}
+                                    render={props => <DashboardPage {...props} blogs={blogs} isAuthChecked={isAuthChecked} toggleSidebar={toggleSidebar} />} />
+                                <ProtectedRoute
+                                    path={DASHBOARD_EDIT_ROUTE} exact
+                                    isAuthChecked={isAuthChecked}
+                                    render={props => <DashboardPage {...props} blogs={blogs} isAuthChecked={isAuthChecked} toggleSidebar={toggleSidebar} />} />
+                                <Route
+                                    path={POSTPAGE_ROUTE}
+                                    render={props => <PostPage blogs={blogs} {...props} toggleSidebar={toggleSidebar} />} />
+                            </Switch>
+                            <Footer />
+                        </Router>
+                        <ToastNotifier />
+                    </ToastContext.Provider> :
+                    <Loader />
+            }
         </div>
     );
 }

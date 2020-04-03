@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sidebar, Remarkable, Loader } from '../_components';
+import { Remarkable, Loader } from '../_components';
 
 export const POSTPAGE_ROUTE = '/:url?';
 
@@ -12,7 +12,7 @@ export function PostPage({ blogs, match }) {
 
     return (
         <div className="PostPage">
-            <div className="main-content">
+            <div className="main-content fade-in">
                 <div className="container">
                     {
                         blog ?

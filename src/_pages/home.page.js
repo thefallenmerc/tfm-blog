@@ -1,5 +1,4 @@
 import React from 'react';
-import { Sidebar } from '../_components';
 import { Link } from 'react-router-dom';
 
 export const HOMEPAGE_ROUTE = '/';
@@ -20,7 +19,7 @@ const randomUnsplash = () => {
 export function HomePage({ blogs, toggleSidebar }) {
     return (
         <div className="HomePage">
-            <div className="main-content">
+            <div className="main-content fade-in">
                 <div className="container pt-5">
                     {/* <h1 className="my-4 text-2xl text-center font-bold">{process.env.REACT_APP_NAME}</h1> */}
                     <div className="blog-card-holder">
