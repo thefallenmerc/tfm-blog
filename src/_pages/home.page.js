@@ -24,6 +24,8 @@ export function HomePage({ blogs, toggleSidebar }) {
                     {/* <h1 className="my-4 text-2xl text-center font-bold">{process.env.REACT_APP_NAME}</h1> */}
                     <div className="blog-card-holder">
                         {
+                            blogs.length === 0 ?
+                                <div className="text-center py-5">Nothing here!</div> :
                             blogs.map((blog, i) => {
                                 const image = blog.image || randomUnsplash();
                                 return (
