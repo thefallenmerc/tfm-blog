@@ -13,10 +13,14 @@ export function NavbarComponent({ toggleSidebar, firebase }) {
             <div>
                 {
                     firebase.auth.currentUser &&
-                    <button className="text-orange-500 uppercase focus:outline-none"
-                        onClick={() => {
-                            firebase.auth.signOut();
-                        }}>Logout</button>
+                    <>
+                        <Link className="text-orange-500 uppercase focus:outline-none mx-2"
+                            to={DASHBOARD_ROUTE}>New Post</Link>
+                        <button className="text-orange-500 uppercase focus:outline-none mx-2"
+                            onClick={() => {
+                                firebase.auth.signOut();
+                            }}>Logout</button>
+                    </>
                 }
                 <button
                     className="sidebar-toggle cursor-pointer hover:bg-gray-200 rounded-full text-2xl font-bold text-orange-500 focus:outline-none"
