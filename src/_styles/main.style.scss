@@ -127,12 +127,13 @@ body {
             margin-right: auto;
             .blog-card-holder {
                 display: flex;
+                flex-wrap: wrap;
                 justify-content: center;
                 .blog-card {
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
-                    width: 480px;
+                    width: 360px;
                     box-shadow: 0 0 0.5rem 0 #0003;
                     border-radius: 0.25rem;
                     margin: 1rem;
@@ -215,7 +216,7 @@ body {
         }
     }
 
-    @media only screen and (max-width: 720px) {
+    @media only screen and (max-width: 768px) {
         .Sidebar {
             display: none;
             width: 100%;
@@ -228,6 +229,28 @@ body {
         .App.with-sidebar {
             .Sidebar {
                 display: block;
+            }
+        }
+        
+        .HomePage {
+            .container {
+                .blog-card-holder {
+                    .blog-card {
+                        width: 280px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        .HomePage {
+            .container {
+                .blog-card-holder {
+                    .blog-card {
+                        width: auto;
+                    }
+                }
             }
         }
     }
