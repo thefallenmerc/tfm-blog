@@ -20,11 +20,11 @@ You can fork/clone/explore the code freely.
 
  ### Installation and setup - 
 
-    [https://tfm-tech.web.app/tfm-blog-installation-and-setup-with-firebase](https://tfm-tech.web.app/tfm-blog-installation-and-setup-with-firebase)
+[https://tfm-tech.web.app/tfm-blog-installation-and-setup-with-firebase](https://tfm-tech.web.app/tfm-blog-installation-and-setup-with-firebase)
 
 ### Exploring the solution - 
 
-    [https://tfm-tech.web.app/tfm-blog-getting-started](https://tfm-tech.web.app/tfm-blog-getting-started)
+[https://tfm-tech.web.app/tfm-blog-getting-started](https://tfm-tech.web.app/tfm-blog-getting-started)
 
 #### Pending points - 
 
