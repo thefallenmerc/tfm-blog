@@ -65,16 +65,18 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
             return addToast('Content cannot be empty!');
         }
 
+        const url = makeUrl(title);
+
         (
             editable ?
                 firebase.db.collection('users').doc(user.uid).collection('blogs').doc(editable.id).set({
                     title,
-                    url: title.toLowerCase().replace(/\s/g, '-'),
+                    url,
                     content
                 }) :
                 firebase.db.collection('users').doc(user.uid).collection('blogs').add({
                     title,
-                    url: title.toLowerCase().replace(/\s/g, '-'),
+                    url,
                     content
                 })
         ).then(response => {
@@ -84,7 +86,6 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
             }
             addToast('Blog saved');
             // if title has changed then redirect to new title
-            const url = title.toLowerCase().replace(/\s/g, '-');
             if (match.params.url !== url) {
                 history.push('/dashboard/edit/' + url);
             }
@@ -93,6 +94,8 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
         });
 
     };
+
+    const makeUrl = title => (title.toLowerCase().replace(/[\s_]/g, '-').replace(/[|[\]]/g, '').replace(/(-){2,}/g, '-'));
 
     return (
         <div className="DashboardPage">

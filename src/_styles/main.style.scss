@@ -131,6 +131,9 @@ body {
         .container {
             margin-left: auto;
             margin-right: auto;
+            .blog-search {
+                width: 300px;
+            }
             .blog-card-holder {
                 display: flex;
                 flex-wrap: wrap;

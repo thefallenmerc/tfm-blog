@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export const HOMEPAGE_ROUTE = '/';
@@ -17,31 +17,40 @@ const randomUnsplash = () => {
 }
 
 export function HomePage({ blogs, toggleSidebar }) {
+
+    const [query, setQuery] = useState('');
     return (
         <div className="HomePage">
             <div className="main-content fade-in">
                 <div className="container pt-5">
+                    <div className="my-5 text-center">
+                        <input
+                            className="blog-search rounded border px-4 py-2 focus:outline-none"
+                            placeholder="Search blogs..."
+                            value={query} onChange={event => setQuery(event.target.value)} />
+                    </div>
                     {/* <h1 className="my-4 text-2xl text-center font-bold">{process.env.REACT_APP_NAME}</h1> */}
                     <div className="blog-card-holder">
                         {
                             blogs.length === 0 ?
                                 <div className="text-center py-5">Nothing here!</div> :
-                            blogs.map((blog, i) => {
-                                const image = blog.image || randomUnsplash();
-                                return (
-                                    <Link className="blog-card" key={i} to={blog.url}>
-                                        <div className="blurred-bg" style={{ backgroundImage: 'url(' + image + ')' }}></div>
-                                        <div className="blog-image">
-                                            <img
-                                                src={image}
-                                                alt={blog.title} />
-                                        </div>
-                                        <div className="blog-title">
-                                            {blog.title}
-                                        </div>
-                                    </Link>
-                                )
-                            })
+                                (query.trim().length === 0 ? blogs : blogs.filter(b => b.title.toLowerCase().includes(query.trim().toLowerCase()))) // filtering blogs if filter not empty
+                                    .map((blog, i) => {
+                                        const image = blog.image || randomUnsplash();
+                                        return (
+                                            <Link className="blog-card" key={i} to={blog.url}>
+                                                <div className="blurred-bg" style={{ backgroundImage: 'url(' + image + ')' }}></div>
+                                                <div className="blog-image">
+                                                    <img
+                                                        src={image}
+                                                        alt={blog.title} />
+                                                </div>
+                                                <div className="blog-title">
+                                                    {blog.title}
+                                                </div>
+                                            </Link>
+                                        )
+                                    })
                         }
                     </div>
                 </div>
