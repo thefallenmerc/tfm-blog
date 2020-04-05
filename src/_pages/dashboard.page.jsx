@@ -4,6 +4,10 @@ import { useState } from 'react';
 import { Sidebar, Remarkable } from '../_components';
 import { useEffect } from 'react';
 import { history } from '../_config';
+import AceEditor from 'react-ace';
+
+import "ace-builds/src-noconflict/mode-markdown";
+import "ace-builds/src-noconflict/theme-xcode";
 
 export const DASHBOARD_ROUTE = '/dashboard';
 export const DASHBOARD_EDIT_ROUTE = '/dashboard/edit/:url';
@@ -74,7 +78,7 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
                     content
                 })
         ).then(response => {
-            if(!editable) {
+            if (!editable) {
                 setTitle('');
                 setContent('');
             }
@@ -98,9 +102,17 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
                     name="title" type="text" placeholder="Title"
                     className="w-full p-2 mb-3 text-2xl focus:outline-none" value={title}
                     onChange={e => setTitle(e.target.value)} />
-                <textarea className="w-full p-2 focus:outline-none"
-                    placeholder="Content" name="content" value={content}
-                    onChange={e => { setContent(e.target.value) }}></textarea>
+                <AceEditor
+                    mode="markdown"
+                    className="w-full p-2 focus:outline-none"
+                    theme="xcode"
+                    onChange={setContent}
+                    name="aceeditor"
+                    value={content}
+                    height="calc(100vh - 172px)"
+                    editorProps={{ $blockScrolling: true }}
+                    style={{width: '100%', lineHeight: '1.2rem'}}
+                />
                 <button type="submit" className="px-4 py-2 bg-orange-500 rounded text-white mx-auto block focus:outline-none">Save</button>
             </form>
             <div className="remarkable">
