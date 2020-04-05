@@ -20,7 +20,7 @@ export const ToastNotifier = withToast(({ toasts, removeToast }) => {
             case 'warning':
                 return 'bg-orange-300';
             default:
-                return 'bg-blue-300';
+                return 'theme-bg-text';
         }
     }
     return (

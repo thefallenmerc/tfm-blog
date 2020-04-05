@@ -4,6 +4,7 @@
 
 @import "./theme.style.scss";
 @import "./animations.style.scss";
+@import "./ace-dillinger.css";
 
 body {
     margin: 0;
@@ -56,12 +57,17 @@ body {
                 text-decoration: underline;
             }
         }
+        blockquote p {
+            font-style: italic;
+            padding: 0.66001rem 1rem 1rem;
+            border-left: 3px solid #a0aabf;
+        }
     }
     .Navbar {
         position: relative;
         z-index: 69;
-        background-color: white;
-        box-shadow: 0 0 10px 0 #0003;
+        color: white;
+        background-color: $theme-color;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -231,7 +237,7 @@ body {
                 display: block;
             }
         }
-        
+
         .HomePage {
             .container {
                 .blog-card-holder {

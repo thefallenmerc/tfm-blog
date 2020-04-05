@@ -6,7 +6,7 @@ import { withFirebase } from '../_contexts';
 export function NavbarComponent({ toggleSidebar, firebase }) {
     return (
         <div className="Navbar">
-            <Link to={HOMEPAGE_ROUTE} className="text-2xl py-2 px-4 font-bold text-orange-500 title">
+            <Link to={HOMEPAGE_ROUTE} className="text-2xl py-2 px-4 font-bold title">
                 {process.env.REACT_APP_NAME}
             </Link>
 
@@ -14,16 +14,16 @@ export function NavbarComponent({ toggleSidebar, firebase }) {
                 {
                     firebase.auth.currentUser &&
                     <>
-                        <Link className="text-orange-500 uppercase focus:outline-none mx-2"
+                        <Link className="uppercase focus:outline-none mx-2"
                             to={DASHBOARD_ROUTE}>New Post</Link>
-                        <button className="text-orange-500 uppercase focus:outline-none mx-2"
+                        <button className="uppercase focus:outline-none mx-2"
                             onClick={() => {
                                 firebase.auth.signOut();
                             }}>Logout</button>
                     </>
                 }
                 <button
-                    className="sidebar-toggle cursor-pointer hover:bg-gray-200 rounded-full text-2xl font-bold text-orange-500 focus:outline-none"
+                    className="sidebar-toggle cursor-pointer shadowed rounded-full text-2xl font-bold focus:outline-none"
                     onClick={toggleSidebar}>&#x22EE;</button>
             </div>
         </div>

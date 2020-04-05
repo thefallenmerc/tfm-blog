@@ -1,1 +1,10 @@
-$theme-color: #ed8936;
+$theme-color: #373d49;
+
+.theme-text {
+    color: $theme-color;
+}
+
+.theme-bg-text {
+    background-color: $theme-color;
+    color: white;
+}

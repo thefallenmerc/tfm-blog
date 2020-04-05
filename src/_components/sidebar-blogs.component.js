@@ -22,8 +22,8 @@ export
                         to={to(blog.url)}
                         className={
                             activeUrl === blog.url ?
-                                "block px-4 py-2 text-orange-500 cursor-pointer" :
-                                "block px-4 py-2 hover:text-orange-500 cursor-pointer"
+                                "block px-4 py-2 theme-text font-bold cursor-pointer" :
+                                "block px-4 py-2 hover:font-bold theme-text cursor-pointer"
                         }
                         onClick={toggleSidebar}
                         key={index}>

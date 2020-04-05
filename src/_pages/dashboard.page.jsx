@@ -100,11 +100,11 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
             <form onSubmit={addBlog} className="main-content">
                 <input
                     name="title" type="text" placeholder="Title"
-                    className="w-full p-2 mb-3 text-2xl focus:outline-none" value={title}
+                    className="w-full pr-24 p-2 mb-3 font-bold text-2xl focus:outline-none" value={title}
                     onChange={e => setTitle(e.target.value)} />
                 <AceEditor
                     mode="markdown"
-                    className="w-full p-2 focus:outline-none"
+                    className="w-full p-2 focus:outline-none ace-dillinger"
                     theme="xcode"
                     onChange={setContent}
                     name="aceeditor"
@@ -113,7 +113,7 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
                     editorProps={{ $blockScrolling: true }}
                     style={{width: '100%', lineHeight: '1.2rem'}}
                 />
-                <button type="submit" className="px-4 py-2 bg-orange-500 rounded text-white mx-auto block focus:outline-none">Save</button>
+                <button type="submit" className="px-4 py-2 rounded theme-bg-text mx-auto block focus:outline-none">Save</button>
             </form>
             <div className="remarkable">
                 <Remarkable blog={{ title, content }} />
