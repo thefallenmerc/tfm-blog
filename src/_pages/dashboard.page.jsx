@@ -8,6 +8,7 @@ import AceEditor from 'react-ace';
 
 import "ace-builds/src-noconflict/mode-markdown";
 import "ace-builds/src-noconflict/theme-xcode";
+import { beautify } from "ace-builds/src-noconflict/ext-beautify";
 
 export const DASHBOARD_ROUTE = '/dashboard';
 export const DASHBOARD_EDIT_ROUTE = '/dashboard/edit/:url';
@@ -114,7 +115,14 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
                     value={content}
                     height="calc(100vh - 172px)"
                     editorProps={{ $blockScrolling: true }}
-                    style={{width: '100%', lineHeight: '1.2rem'}}
+                    style={{ width: '100%', lineHeight: '1.2rem' }}
+                    commands={[{
+                        name: 'beautify',
+                        exec: editor => {
+                            beautify(editor.session);
+                        },
+                        bindKey: 'Shift-Alt-F'
+                    }]}
                 />
                 <button type="submit" className="px-4 py-2 rounded theme-bg-text mx-auto block focus:outline-none">Save</button>
             </form>
