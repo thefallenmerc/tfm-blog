@@ -115,7 +115,7 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
                     value={content}
                     height="calc(100vh - 172px)"
                     editorProps={{ $blockScrolling: true }}
-                    style={{ width: '100%', lineHeight: '1.2rem' }}
+                    style={{ width: '100%', lineHeight: '1.2rem', fontSize: '1.1rem' }}
                     commands={[{
                         name: 'beautify',
                         exec: editor => {

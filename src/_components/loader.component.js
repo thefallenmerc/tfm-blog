@@ -23,7 +23,7 @@ const spinnerStyle = {
     margin: 0,
     boxSizing: "border-box",
     border: "2px solid #fff",
-    borderColor: "orangered transparent orangered transparent"
+    borderColor: "#373d49 transparent #373d49 transparent"
 }
 
 export function Loader() {
