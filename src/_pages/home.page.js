@@ -34,7 +34,7 @@ export function HomePage({ blogs, toggleSidebar }) {
                         {
                             blogs.length === 0 ?
                                 <div className="text-center py-5">Nothing here!</div> :
-                                (query.trim().length === 0 ? blogs : blogs.filter(b => b.title.toLowerCase().includes(query.trim().toLowerCase()))) // filtering blogs if filter not empty
+                                (query.trim().length === 0 ? blogs.filter(b => b.isPublished) : blogs.filter(b => b.isPublished && b.title.toLowerCase().includes(query.trim().toLowerCase()))) // filtering blogs if filter not empty
                                     .map((blog, i) => {
                                         const image = blog.image || randomUnsplash();
                                         return (

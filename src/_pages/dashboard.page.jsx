@@ -17,6 +17,7 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
 
     // initialize all the variable
     const [title, setTitle] = useState('');
+    const [isPublished, setIsPublished] = useState(false);
     const [content, setContent] = useState('');
 
     const [blogs, setBlogs] = useState([]);
@@ -41,14 +42,13 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
     }, []);
 
     useEffect(() => {
-
-
         // set blog to edit if needed
         if ('url' in match.params) {
             const { url } = match.params;
             const e = blogs.find(blog => blog.url === url);
             if (e) {
                 setTitle(e.title);
+                setIsPublished(e.isPublished);
                 setContent(e.content);
                 setEditable(e);
             }
@@ -73,17 +73,20 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
                 firebase.db.collection('users').doc(user.uid).collection('blogs').doc(editable.id).set({
                     title,
                     url,
+                    isPublished,
                     content
                 }) :
                 firebase.db.collection('users').doc(user.uid).collection('blogs').add({
                     title,
                     url,
+                    isPublished,
                     content
                 })
         ).then(response => {
             if (!editable) {
                 setTitle('');
                 setContent('');
+                setIsPublished(false);
             }
             addToast('Blog saved');
             // if title has changed then redirect to new title
@@ -106,6 +109,12 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
                     name="title" type="text" placeholder="Title"
                     className="w-full pr-24 p-2 mb-3 font-bold text-2xl focus:outline-none" value={title}
                     onChange={e => setTitle(e.target.value)} />
+                <label className="text-right px-4 pb-2 cursor-pointer block">
+                    <input
+                        type="checkbox"
+                        checked={isPublished}
+                        onChange={e => setIsPublished(e.target.checked)} /> Published?
+                </label>
                 <AceEditor
                     mode="markdown"
                     className="w-full p-2 focus:outline-none ace-dillinger"
