@@ -20,6 +20,8 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
     const [isPublished, setIsPublished] = useState(false);
     const [content, setContent] = useState('');
 
+    const [showPreview, setShowPreview] = useState(true);
+
     const [blogs, setBlogs] = useState([]);
 
     const [editable, setEditable] = useState(null);
@@ -109,15 +111,23 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
                     name="title" type="text" placeholder="Title"
                     className="w-full pr-24 p-2 mb-3 font-bold text-2xl focus:outline-none" value={title}
                     onChange={e => setTitle(e.target.value)} />
-                <label className="text-right px-4 pb-2 cursor-pointer block">
-                    <input
-                        type="checkbox"
-                        checked={isPublished}
-                        onChange={e => setIsPublished(e.target.checked)} /> Published?
-                </label>
+                <div className="text-right pb-2">
+                    <label className="text-right px-4 inline-block cursor-pointer">
+                        <input
+                            type="checkbox"
+                            checked={showPreview}
+                            onChange={e => setShowPreview(e.target.checked)} /> Show Preview?
+                    </label>
+                    <label className="text-right px-4 inline-block cursor-pointer">
+                        <input
+                            type="checkbox"
+                            checked={isPublished}
+                            onChange={e => setIsPublished(e.target.checked)} /> Published?
+                    </label>
+                </div>
                 <AceEditor
                     mode="markdown"
-                    className="w-full p-2 focus:outline-none ace-dillinger"
+                    className="w-full p-2 focus:outline-none ace-dillinger "
                     theme="xcode"
                     onChange={setContent}
                     name="aceeditor"
@@ -136,7 +146,7 @@ function DashboardPageComponent({ firebase, user, match, addToast, toggleSidebar
                 />
                 <button type="submit" className="px-4 py-2 rounded theme-bg-text mx-auto block focus:outline-none">Save</button>
             </form>
-            <div className="remarkable">
+            <div className={"remarkable " + (showPreview ? "block" : "hidden")}>
                 <Remarkable blog={{ title, content }} />
             </div>
         </div>
